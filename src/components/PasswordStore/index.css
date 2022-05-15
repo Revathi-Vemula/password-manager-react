@@ -88,11 +88,11 @@
 .websites-list-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   flex-wrap: wrap;
   list-style-type: none;
   padding-left: 0;
-  width: 100%;
+  min-width: 95%;
+  margin: 20px;
 }
 
 .checkbox-container {
@@ -128,4 +128,11 @@
   height: 50%;
   width: 50%;
   align-self: center;
+}
+
+.empty-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

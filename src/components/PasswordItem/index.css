@@ -29,21 +29,21 @@
 .pwd-item-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   padding: 10px;
   border: solid 1px #f8fafc;
   border-radius: 20px;
-  width: 100%;
-  margin-right: 10px;
+  min-width: 90%;
   background-color: transparent;
   margin-bottom: 15px;
   flex: 1;
+  margin-right: 10px;
 }
 
 @media screen and (min-width: 768px) {
   .pwd-item-container {
-    width: 40%;
-    flex: 0;
+    min-width: 30vw;
+    flex-shrink: 1;
+    flex-grow: 0;
   }
 }
 
@@ -66,8 +66,17 @@
 .website-details-container {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   margin-left: 20px;
   margin-right: 20px;
+  min-width: 50%;
+}
+
+@media screen and (min-width: 1100px) {
+  .website-details-container {
+    min-width: 70%;
+  }
 }
 
 .website-name {
@@ -86,16 +95,18 @@
 }
 
 .pwd-image-style {
-  width: 80px;
-  height: 15px;
-  margin-top: 0;
+  width: 120px;
+  height: 18px;
+  margin-top: 10px;
+  margin-bottom: 0;
 }
 
 .pwd-style {
   color: #f8fafc;
   font-family: 'Consolas';
   font-size: 15px;
-  margin-top: 0;
+  margin-top: 10px;
+  margin-bottom: 0;
 }
 
 .btn-delete {

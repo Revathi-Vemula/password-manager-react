@@ -5,18 +5,36 @@ import './index.css'
 class PasswordStore extends Component {
   state = {searchInput: '', isShowPasswordChecked: false}
 
+  onClickDeleteWebsite = id => {
+    const {deleteWebsiteFromList} = this.props
+    deleteWebsiteFromList(id)
+  }
+
   renderEmptyView = () => (
-    <img
-      src="https://assets.ccbp.in/frontend/react-js/no-passwords-img.png"
-      className="no-password-img"
-      alt="no passwords"
-    />
+    <div className="empty-view">
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/no-passwords-img.png"
+        className="no-password-img"
+        alt="no passwords"
+      />
+      <p className="your-pwd-heading">No Passwords</p>
+    </div>
   )
 
   renderSearchList = searchResultsList => {
-    searchResultsList.map(eachWebsite => (
-      <PasswordItem websiteDetails={eachWebsite} key={eachWebsite.id} />
-    ))
+    const {isShowPasswordChecked} = this.state
+    return (
+      <ul className="websites-list-container">
+        {searchResultsList.map(eachWebsite => (
+          <PasswordItem
+            websiteDetails={eachWebsite}
+            key={eachWebsite.id}
+            isShowPasswordChecked={isShowPasswordChecked}
+            onClickDelete={this.onClickDeleteWebsite}
+          />
+        ))}
+      </ul>
+    )
   }
 
   getSearchResults = () => {
@@ -40,8 +58,7 @@ class PasswordStore extends Component {
   }
 
   render() {
-    const {websitesList} = this.props
-    const {searchInput, isShowPasswordChecked} = this.state
+    const {searchInput} = this.state
     const searchResultsList = this.getSearchResults()
     return (
       <div className="bottom-store">
@@ -77,11 +94,9 @@ class PasswordStore extends Component {
             Show Passwords
           </label>
         </div>
-        <ul className="websites-list-container">
-          {searchResultsList.length === 0
-            ? this.renderEmptyView()
-            : this.renderSearchList(searchResultsList)}
-        </ul>
+        {searchResultsList.length === 0
+          ? this.renderEmptyView()
+          : this.renderSearchList(searchResultsList)}
       </div>
     )
   }

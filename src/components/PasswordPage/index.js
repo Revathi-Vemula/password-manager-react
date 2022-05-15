@@ -33,6 +33,15 @@ class PasswordPage extends Component {
     this.setState({passwordInput: event.target.value})
   }
 
+  deleteWebsiteFromList = websiteId => {
+    const {websitesList} = this.state
+    this.setState({
+      websitesList: websitesList.filter(
+        eachWebsite => eachWebsite.id !== websiteId,
+      ),
+    })
+  }
+
   onAddWebsitePassword = event => {
     event.preventDefault()
 
@@ -142,7 +151,10 @@ class PasswordPage extends Component {
             />
           </div>
           <div className="bottom-passwords-container">
-            <PasswordStore websitesList={websitesList} />
+            <PasswordStore
+              websitesList={websitesList}
+              deleteWebsiteFromList={this.deleteWebsiteFromList}
+            />
           </div>
         </div>
       </div>
